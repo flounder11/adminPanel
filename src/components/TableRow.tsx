@@ -1,14 +1,19 @@
-export default function TableRow() {
+import type { IUser } from '../types/user'
+
+interface ITableRowProps {
+	user: IUser
+}
+
+export default function TableRow({ user }: ITableRowProps) {
 	return (
-		<tbody>
-			<tr className="border-b border-x">
-				<td className="px-4 py-3 text-lg">Egor</td>
-				<td className="px-4 py-3 text-lg">flovpn@mail.ru</td>
-				<td className="px-4 py-3 text-lg">19</td>
-				<td className="px-4 py-3 text-lg">Мужской</td>
-				<td className="px-4 py-3 text-lg">РНД</td>
-				<td className="px-4 py-3 text-lg">Frontend</td>
-			</tr>
-		</tbody>
+		<tr className="border-b border-x">
+			<td className="px-4 py-3 text-lg">{user.id}</td>
+			<td className="px-4 py-3 text-lg">{user.name}</td>
+			<td className="px-4 py-3 text-lg">{user.email}</td>
+			<td className="px-4 py-3 text-lg">{user.age}</td>
+			<td className="px-4 py-3 text-lg">{user.gender}</td>
+			<td className="px-4 py-3 text-lg">{user.city}</td>
+			<td className="px-4 py-3 text-lg">{user.department}</td>
+		</tr>
 	)
 }

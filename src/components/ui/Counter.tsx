@@ -7,15 +7,13 @@ type CounterProps = {
 
 export default function Counter({ title, counters }: CounterProps) {
 	return (
-		<div>
-			<Card className="w-2xs bg-gray-400 rounded-lg">
-				<CardContent>
-					<CardTitle className="text-lg font-medium">{title}</CardTitle>
-					<CardDescription className="text-xl font-semibold text-black">
-						{counters}
-					</CardDescription>
-				</CardContent>
-			</Card>
-		</div>
+		<Card className="w-2xs bg-gray-400 rounded-lg">
+			<CardContent>
+				<CardTitle className="text-lg font-medium">{title}</CardTitle>
+				<CardDescription className="text-xl font-semibold text-black">
+					{counters}
+				</CardDescription>
+			</CardContent>
+		</Card>
 	)
 }

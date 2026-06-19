@@ -13,9 +13,15 @@ const departmentOptions = [
 	{ value: 'support', label: 'Поддержка' }
 ]
 
+const cityOptions = [
+	{ value: 'RND', label: 'Ростов' },
+	{ value: 'Kras', label: 'Краснодар' }
+]
+
 export default function FilterPanel() {
 	const [gender, setGender] = useState('')
 	const [department, setDepartment] = useState('')
+	const [city, setCity] = useState('')
 
 	return (
 		<div className="flex items-center gap-x-3">
@@ -33,6 +39,13 @@ export default function FilterPanel() {
 				selectedValue={gender}
 				onChange={setGender}
 				placeholder="Выберите пол"
+			/>
+
+			<CustomSelect
+				options={cityOptions}
+				selectedValue={city}
+				onChange={setCity}
+				placeholder="Выберите город"
 			/>
 
 			<Button
