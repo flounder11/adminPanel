@@ -23,6 +23,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
 
 	const selectedOption = options.find(opt => opt.value === selectedValue)
 
+	// закрытие селекта при клике в любое место экрана
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
@@ -49,7 +50,6 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
 				<span className={selectedOption ? 'text-gray-900' : 'text-gray-400'}>
 					{selectedOption ? selectedOption.label : placeholder}
 				</span>
-				{/* иконка стрелки вниз */}
 			</button>
 
 			{isOpen && (

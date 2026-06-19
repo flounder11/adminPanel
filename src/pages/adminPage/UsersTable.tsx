@@ -1,29 +1,13 @@
 import TableBody from '../../components/TableBody'
 import TableTitles from '../../components/TableTitles'
 import { useUsersSort } from '../../hooks/useUsersSort'
+import type { IUser } from '../../types/user'
 
-export default function UsersTable() {
-	const users = [
-		{
-			id: 1,
-			name: 'igor',
-			email: 'flovpn@mail.ur',
-			age: 19,
-			gender: 'male',
-			city: 'rnd',
-			department: 'frontend'
-		},
-		{
-			id: 2,
-			name: 'agor',
-			email: 'asflovpn@mail.ur',
-			age: 22,
-			gender: 'male',
-			city: 'rnd',
-			department: 'frontend'
-		}
-	]
+interface IUsersTableProps {
+	users: IUser[]
+}
 
+export default function UsersTable({ users }: IUsersTableProps) {
 	const { sort, sortedUsers, handleSort } = useUsersSort(users)
 
 	return (

@@ -22,7 +22,7 @@ export default function TableTitles({ handleSort, sort }: ITableTitlesProps) {
 				<th className="px-4 py-3 text-left border">
 					<SortButton
 						handleSort={handleSort}
-						field="name"
+						field="firstName"
 						title="Имя"
 						sort={sort}
 					/>

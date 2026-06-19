@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button } from '../../components/ui/button'
 import { CustomSelect } from '../../components/ui/CustomSelect'
 import { Input } from '../../components/ui/input'
+import type { IFilter } from './AdminPage'
 
 const genderOptions = [
 	{ value: 'male', label: 'Мужской' },
@@ -9,7 +10,7 @@ const genderOptions = [
 ]
 
 const departmentOptions = [
-	{ value: 'sngineering', label: 'Инженер' },
+	{ value: 'engineering', label: 'Инженер' },
 	{ value: 'support', label: 'Поддержка' }
 ]
 
@@ -18,10 +19,36 @@ const cityOptions = [
 	{ value: 'Kras', label: 'Краснодар' }
 ]
 
-export default function FilterPanel() {
+interface FilterProps {
+	setFilter: React.Dispatch<React.SetStateAction<IFilter>>
+}
+
+export default function FilterPanel({ setFilter }: FilterProps) {
 	const [gender, setGender] = useState('')
 	const [department, setDepartment] = useState('')
 	const [city, setCity] = useState('')
+
+	// через обратный сеттер получаем данные в родительский компонент
+	const confirmFilters = () => {
+		console.log(gender, department, city)
+		setFilter({
+			gender,
+			department,
+			city
+		})
+	}
+
+	const clearFilters = () => {
+		setCity('')
+		setDepartment('')
+		setGender('')
+
+		setFilter({
+			gender: '',
+			department: '',
+			city: ''
+		})
+	}
 
 	return (
 		<div className="flex items-center gap-x-3">
@@ -51,7 +78,8 @@ export default function FilterPanel() {
 			<Button
 				variant="outline"
 				size="lg"
-				className="shadow-sm"
+				className="shadow-sm text-base"
+				onClick={confirmFilters}
 			>
 				Применить
 			</Button>
@@ -59,7 +87,8 @@ export default function FilterPanel() {
 			<Button
 				variant="outline"
 				size="lg"
-				className="shadow-sm"
+				className="shadow-sm text-base"
+				onClick={clearFilters}
 			>
 				Сбросить
 			</Button>
