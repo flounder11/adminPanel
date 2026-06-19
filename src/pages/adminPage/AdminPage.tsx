@@ -6,13 +6,15 @@ export interface IFilter {
 	gender: string
 	city: string
 	department: string
+	search: string
 }
 
 export default function AdminPage() {
 	const [filter, setFilter] = useState<IFilter>({
 		gender: '',
 		city: '',
-		department: ''
+		department: '',
+		search: ''
 	})
 
 	const users = [
@@ -47,16 +49,24 @@ export default function AdminPage() {
 
 	// фильтрация итогового массива
 	const filtredUsers = users.filter(user => {
-		return (
-			(!filter.gender || user.gender === filter.gender) &&
-			(!filter.city || user.city === filter.city) &&
-			(!filter.department || user.department === filter.department)
-		)
+		const genderMatch = !filter.gender || user.gender === filter.gender
+		const cityMatch = !filter.city || user.city === filter.city
+		const departmentMatch =
+			!filter.department || user.department === filter.department
+		const searchMatch =
+			!filter.search ||
+			user.firstName.toLowerCase().includes(filter.search.toLowerCase()) ||
+			user.email.toLowerCase().includes(filter.search.toLowerCase())
+
+		return genderMatch && cityMatch && departmentMatch && searchMatch
 	})
 
 	return (
 		<div className="flex flex-col gap-y-3">
-			<FilterPanel setFilter={setFilter} />
+			<FilterPanel
+				filter={filter}
+				setFilter={setFilter}
+			/>
 
 			{/* передаем на рендер таблицы уже отфильтрованный массив */}
 			<UsersTable users={filtredUsers} />
