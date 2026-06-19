@@ -48,7 +48,7 @@ export default function FilterPanel({ filter, setFilter }: FilterProps) {
 			}))
 		}, 400)
 		return () => clearTimeout(timeout)
-	}, [searchInput])
+	}, [searchInput, setFilter])
 
 	return (
 		<div className="flex items-center gap-x-3">
