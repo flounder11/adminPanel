@@ -2,7 +2,7 @@ import Counter from '../ui/Counter'
 
 export default function MainCounters() {
 	return (
-		<div>
+		<div className="flex items-center gap-x-3 my-6">
 			<Counter
 				title="Всего пользователей"
 				counters={444}

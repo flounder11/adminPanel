@@ -1,13 +1,10 @@
-import { Outlet } from 'react-router-dom'
 import MainCounters from './MainCounters'
 
-export default function Layout() {
+export default function Layout({ children }) {
 	return (
 		<div className="max-w-[1600px] mx-auto">
 			<MainCounters />
-			<main>
-				<Outlet />
-			</main>
+			<main>{children}</main>
 		</div>
 	)
 }
