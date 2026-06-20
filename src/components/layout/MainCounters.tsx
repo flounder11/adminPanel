@@ -1,11 +1,12 @@
 import { useEffect, useMemo } from 'react'
-import { useAxiosUsers, useUsers } from '../../store/useUserStore'
+import { useAxiosUsers, useIsLoading, useUsers } from '../../store/useUserStore'
 import Counter from '../ui/Counter'
+import { Skeleton } from '../ui/skeleton'
 
 export default function MainCounters() {
 	const users = useUsers()
 	const axiosUsers = useAxiosUsers()
-	// const isLoading = useIsLoading()
+	const isLoading = useIsLoading()
 
 	console.log(users)
 	useEffect(() => {
@@ -26,22 +27,33 @@ export default function MainCounters() {
 
 	return (
 		<div className="flex items-center gap-x-3 my-6">
-			<Counter
-				title="Всего пользователей"
-				counters={users.length}
-			/>
-			<Counter
-				title="Средний возраст"
-				counters={stats.truncMiddleAge}
-			/>
-			<Counter
-				title="Мужчин"
-				counters={stats.manUsers}
-			/>
-			<Counter
-				title="Женщин"
-				counters={stats.womanUsers}
-			/>
+			{isLoading ? (
+				<>
+					<Skeleton className="w-2xs bg-gray-200 h-22 rounded-lg" />
+					<Skeleton className="w-2xs bg-gray-200 h-22 rounded-lg" />
+					<Skeleton className="w-2xs bg-gray-200 h-22 rounded-lg" />
+					<Skeleton className="w-2xs bg-gray-200 h-22 rounded-lg" />
+				</>
+			) : (
+				<>
+					<Counter
+						title="Всего пользователей"
+						counters={users.length}
+					/>
+					<Counter
+						title="Средний возраст"
+						counters={stats.truncMiddleAge}
+					/>
+					<Counter
+						title="Мужчин"
+						counters={stats.manUsers}
+					/>
+					<Counter
+						title="Женщин"
+						counters={stats.womanUsers}
+					/>
+				</>
+			)}
 		</div>
 	)
 }

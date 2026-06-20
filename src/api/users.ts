@@ -1,19 +1,21 @@
 import axios from 'axios'
-
-export interface IUsers {
-	id: number
-	firstName: string
-	email: string
-	age: number
-	gender: string
-	city: string
-	department: string
-}
+import type { IUser, IUserApi } from '../types/user'
 
 export const getAllUsers = async () => {
-	const res = await axios.get<{ users: IUsers[] }>(
+	const mapUser = (u: IUserApi): IUser => ({
+		id: u.id,
+		firstName: u.firstName,
+		email: u.email,
+		age: u.age,
+		gender: u.gender,
+
+		city: u.address.city,
+		department: u.company.department
+	})
+
+	const res = await axios.get<{ users: IUserApi[] }>(
 		'https://dummyjson.com/users?limit=0'
 	)
 
-	return res.data.users
+	return res.data.users.map(mapUser)
 }

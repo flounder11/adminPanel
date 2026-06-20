@@ -6,29 +6,29 @@ interface ITableBodyProps {
 }
 
 export default function TableBody({ users }: ITableBodyProps) {
-	if (users.length === 0) {
-		return <tbody>Ничего не найдено</tbody>
-	}
-
-	return (
-		<tbody>
-			{users.length === 0 ? (
+	if (!users.length) {
+		return (
+			<tbody>
 				<tr>
 					<td
-						colSpan={5}
+						colSpan={7}
 						className="text-center py-4"
 					>
 						Ничего не найдено
 					</td>
 				</tr>
-			) : (
-				users.map(user => (
-					<TableRow
-						key={user.id}
-						user={user}
-					/>
-				))
-			)}
+			</tbody>
+		)
+	}
+
+	return (
+		<tbody>
+			{users.map(user => (
+				<TableRow
+					key={user.id}
+					user={user}
+				/>
+			))}
 		</tbody>
 	)
 }

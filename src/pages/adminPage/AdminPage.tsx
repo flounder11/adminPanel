@@ -1,51 +1,30 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useAxiosUsers, useUsers } from '../../store/useUserStore'
 import FilterPanel from './FilterPanel'
 import UsersTable from './UsersTable'
 
 export interface IFilter {
 	gender: string
+	search: string
 	city: string
 	department: string
-	search: string
 }
 
 export default function AdminPage() {
 	const [filter, setFilter] = useState<IFilter>({
 		gender: '',
+		search: '',
 		city: '',
-		department: '',
-		search: ''
+		department: ''
 	})
 
-	const users = [
-		{
-			id: 1,
-			firstName: 'igor',
-			email: 'flovpn@mail.ur',
-			age: 19,
-			gender: 'male',
-			city: 'rnd',
-			department: 'frontend'
-		},
-		{
-			id: 2,
-			firstName: 'agor',
-			email: 'asflovpn@mail.ur',
-			age: 22,
-			gender: 'female',
-			city: 'rnd',
-			department: 'frontend'
-		},
-		{
-			id: 3,
-			firstName: 'goga',
-			email: 'bknovpn@mail.ur',
-			age: 12,
-			gender: 'male',
-			city: 'rnd',
-			department: 'frontend'
-		}
-	]
+	const users = useUsers()
+	const axiosUsers = useAxiosUsers()
+	//const isLoading = useIsLoading()
+
+	useEffect(() => {
+		axiosUsers()
+	}, [axiosUsers])
 
 	// фильтрация итогового массива
 	const filtredUsers = users.filter(user => {
