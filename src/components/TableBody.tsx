@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useIsLoading } from '../store/useUserStore'
+import { useAxiosUsers, useError, useIsLoading } from '../store/useUserStore'
 import type { IUser } from '../types/user'
 import TableRow from './TableRow'
 import {
@@ -19,6 +19,22 @@ export default function TableBody({ users }: ITableBodyProps) {
 	const isLoading = useIsLoading()
 	const [selectedUser, setSelectedUser] = useState<IUser | null>(null)
 	const [open, setOpen] = useState(false)
+
+	const error = useError()
+	const axiosUsers = useAxiosUsers()
+
+	if (error) {
+		return (
+			<div
+				className="flex flex-col mx-auto"
+				py-4
+			>
+				<span>Произошла ошибка: {error}</span>
+
+				<button onClick={axiosUsers}>Попробовать еще раз</button>
+			</div>
+		)
+	}
 
 	if (isLoading) {
 		return (

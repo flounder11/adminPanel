@@ -8,7 +8,7 @@ interface IUsePaginationProps<T> {
 export function usePagination<T>({
 	// передаем массив данных и обозн макс элементов на странице
 	data,
-	itemsOnPage = 15
+	itemsOnPage = 20
 }: IUsePaginationProps<T>) {
 	const [currentPage, setCurrentPage] = useState(1)
 	const totalPages = Math.ceil(data.length / itemsOnPage)

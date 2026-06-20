@@ -26,7 +26,7 @@ export default function MainCounters() {
 	}, [users])
 
 	return (
-		<div className="flex items-center gap-x-3 my-6">
+		<div className="my-6 max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
 			{isLoading ? (
 				<>
 					<Skeleton className="w-2xs bg-gray-200 h-22 rounded-lg" />

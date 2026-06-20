@@ -10,6 +10,7 @@ interface IInitialState {
 	users: IUsers[]
 	selectedUser: IUsers | null
 	isLoading: boolean
+	error: string | null
 }
 
 interface IUserState extends IAction, IInitialState {}
@@ -17,7 +18,8 @@ interface IUserState extends IAction, IInitialState {}
 const initialState: IInitialState = {
 	users: [],
 	selectedUser: null,
-	isLoading: false
+	isLoading: false,
+	error: null
 }
 
 const userStore: StateCreator<IUserState> = (set, get) => ({
@@ -30,7 +32,7 @@ const userStore: StateCreator<IUserState> = (set, get) => ({
 			const users = await getAllUsers()
 			set({ users })
 		} catch (error) {
-			console.log('Error axios users: ', error)
+			set({ error: 'Не удалось загрузить пользователей' })
 
 			console.error(error)
 		} finally {
@@ -48,7 +50,7 @@ const useUserStore = create<IUserState>()(userStore)
 
 export const useUsers = () => useUserStore(state => state.users)
 export const useIsLoading = () => useUserStore(state => state.isLoading)
+export const useAxiosUsers = () => useUserStore(state => state.axiosUsers)
+export const useError = () => useUserStore(state => state.error)
 
 export const infoUser = () => useUserStore.getState().infoUser
-
-export const useAxiosUsers = () => useUserStore(state => state.axiosUsers)

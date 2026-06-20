@@ -40,7 +40,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
 	return (
 		<div
 			ref={selectRef}
-			className="relative w-64 font-sans"
+			className="relative w-full min-w-0 font-sans"
 		>
 			<button
 				type="button"
