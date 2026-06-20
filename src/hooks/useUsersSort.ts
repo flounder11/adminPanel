@@ -9,8 +9,13 @@ export interface ISortState {
 }
 
 export function useUsersSort(users: IUser[]) {
+	const defaultUsersList: ISortState = {
+		field: 'id',
+		direction: 'asc'
+	}
+
 	// состояние сортировки
-	const [sort, setSort] = useState<ISortState | null>(null)
+	const [sort, setSort] = useState<ISortState>(defaultUsersList)
 
 	// сама сортировка
 	const handleSort = (field: keyof IUser) => {
@@ -33,8 +38,6 @@ export function useUsersSort(users: IUser[]) {
 
 	// рендеринг страницы только при изменении массива
 	const sortedUsers = useMemo(() => {
-		if (!sort) return users
-
 		// получаем значение из выбранного поля
 		return [...users].sort((a, b) => {
 			const aValue = a[sort.field]

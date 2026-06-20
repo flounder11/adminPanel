@@ -4,7 +4,7 @@ import { SortButton } from './ui/SortButton'
 
 interface ITableTitlesProps {
 	handleSort: (field: keyof IUser) => void
-	sort: ISortState | null
+	sort: ISortState
 }
 
 export default function TableTitles({ handleSort, sort }: ITableTitlesProps) {

@@ -1,6 +1,11 @@
+import type { ReactNode } from 'react'
 import MainCounters from './MainCounters'
 
-export default function Layout({ children }) {
+interface IProps {
+	children: ReactNode
+}
+
+export default function Layout({ children }: IProps) {
 	return (
 		<div className="max-w-[1600px] mx-auto">
 			<MainCounters />

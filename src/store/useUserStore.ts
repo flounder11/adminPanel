@@ -1,5 +1,6 @@
 import { create, type StateCreator } from 'zustand'
-import { getAllUsers, type IUsers } from '../api/users'
+import { getAllUsers } from '../api/users'
+import type { IUser } from '../types/user'
 
 interface IAction {
 	axiosUsers: () => Promise<void>
@@ -7,8 +8,8 @@ interface IAction {
 }
 
 interface IInitialState {
-	users: IUsers[]
-	selectedUser: IUsers | null
+	users: IUser[]
+	selectedUser: IUser | null
 	isLoading: boolean
 	error: string | null
 }

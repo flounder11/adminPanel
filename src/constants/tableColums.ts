@@ -11,7 +11,7 @@ export const USER_COLUMNS: {
 		sortable: true
 	},
 	{
-		key: 'name',
+		key: 'firstName',
 		title: 'Имя',
 		sortable: true
 	},
