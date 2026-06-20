@@ -23,6 +23,7 @@ export default function UsersTable({ users }: IUsersTableProps) {
 				/>
 				<TableBody users={pagination.currentData} />
 			</table>
+
 			<PaginationItems
 				currentPage={pagination.currentPage}
 				totalPages={pagination.totalPages}

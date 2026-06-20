@@ -6,12 +6,14 @@ interface IUsePaginationProps<T> {
 }
 
 export function usePagination<T>({
+	// передаем массив данных и обозн макс элементов на странице
 	data,
 	itemsOnPage = 15
 }: IUsePaginationProps<T>) {
 	const [currentPage, setCurrentPage] = useState(1)
 	const totalPages = Math.ceil(data.length / itemsOnPage)
 
+	// выборка эл из массива
 	const currentData = useMemo(() => {
 		const start = (currentPage - 1) * itemsOnPage
 		const end = start + itemsOnPage
